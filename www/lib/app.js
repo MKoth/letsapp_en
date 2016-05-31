@@ -12,10 +12,14 @@ module.controller('menuController', function($scope, $http, $sce) {
 					project_id: localStorage.getItem("project_id"),
 					callback:'JSON_CALLBACK'
 				},
-			}).then(function(response) {
+			}).success(function(response) {
 				$scope.milestoneList = response.data;
-			}, function(response) {
-				alert(response);
+			}).
+			error(function(data, status, headers, config) {
+				alert(data);
+				alert(status);
+				alert(headers);
+				alert(config);
 			});
 		}
 		if(localStorage.getItem("login"))
