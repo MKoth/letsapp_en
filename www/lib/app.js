@@ -13,10 +13,11 @@ module.controller('menuController', function($scope, $http, $sce) {
 					callback:'JSON_CALLBACK'
 				},
 			}).success(function(response) {
+				alert(response.data);
 				$scope.milestoneList = response.data;
 			}).
 			error(function(data, status, headers, config) {
-				alert(status.status);
+				alert("error in classes");
 			});
 		}
 		if(localStorage.getItem("login"))
@@ -38,7 +39,6 @@ module.controller('menuController', function($scope, $http, $sce) {
 					callback:'JSON_CALLBACK'
 				},
 			}).then(function(response) {
-				alert(response.data);
 				$scope.allProjTemplates = response.data;
 				menu.setMainPage('select-project.html', {closeMenu: true});
 			}, function(response) {
