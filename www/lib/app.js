@@ -12,11 +12,8 @@ module.controller('menuController', function($scope, $http, $sce) {
 					project_id: localStorage.getItem("project_id"),
 					callback:'JSON_CALLBACK'
 				},
-			}).success(function(response) {
+			}).then(function(response) {
 				$scope.milestoneList = response;
-			}).
-			error(function(data, status, headers, config) {
-				alert("error in classes");
 			});
 		}
 		if(localStorage.getItem("login"))
@@ -32,7 +29,6 @@ module.controller('menuController', function($scope, $http, $sce) {
 			$http({
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
 				method: "get",
-				//headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				params: {
 					action: "get_proj_api",
 					callback:'JSON_CALLBACK'
@@ -40,8 +36,6 @@ module.controller('menuController', function($scope, $http, $sce) {
 			}).then(function(response) {
 				$scope.allProjTemplates = response.data;
 				menu.setMainPage('select-project.html', {closeMenu: true});
-			}, function(response) {
-				alert("error in join");
 			});
 		}
 		
