@@ -6,7 +6,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 		$scope.addClassesToLeftMenu = function(){
 			$http({
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
-				method: "JSONP",
+				method: "jsonp",
 				params: {
 					action: "list_lesson_menu",
 					project_id: localStorage.getItem("project_id"),
@@ -16,7 +16,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				$scope.milestoneList = response.data;
 			}).
 			error(function(data, status, headers, config) {
-				alert("error");
+				alert(status.statusText);
 			});
 		}
 		if(localStorage.getItem("login"))
@@ -31,7 +31,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 			$scope.registrationType = 'join';
 			$http({
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
-				method: "JSONP",
+				method: "jsonp",
 				params: {
 					action: "get_proj_api",
 					callback:'JSON_CALLBACK'
