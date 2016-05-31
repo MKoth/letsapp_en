@@ -16,7 +16,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				$scope.milestoneList = response.data;
 			}).
 			error(function(data, status, headers, config) {
-				alert(status.statusText);
+				alert(status.status);
 			});
 		}
 		if(localStorage.getItem("login"))
