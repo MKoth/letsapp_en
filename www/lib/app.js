@@ -14,6 +14,8 @@ module.controller('menuController', function($scope, $http, $sce) {
 				},
 			}).then(function(response) {
 				$scope.milestoneList = response.data;
+			}, function(response) {
+				alert(response.statusText);
 			});
 		}
 		if(localStorage.getItem("login"))
