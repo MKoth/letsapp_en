@@ -33,7 +33,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
 				method: "get",
 				//headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				data: {
+				params: {
 					action: "get_proj_api",
 					callback:'JSON_CALLBACK'
 				},
