@@ -40,7 +40,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				$scope.allProjTemplates = response.data;
 				menu.setMainPage('select-project.html', {closeMenu: true});
 			}, function(response) {
-				alert(response.statusText);
+				alert(response.status);
 			});
 		}
 		
