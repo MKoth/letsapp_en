@@ -31,7 +31,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 			$scope.registrationType = 'join';
 			$http({
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
-				method: "get",
+				method: "JSONP",
 				params: {
 					action: "get_proj_api",
 					callback:'JSON_CALLBACK'
@@ -40,7 +40,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				$scope.allProjTemplates = response.data;
 				menu.setMainPage('select-project.html', {closeMenu: true});
 			}, function(response) {
-				alert(response.statusText);
+				alert(response);
 			});
 		}
 		
