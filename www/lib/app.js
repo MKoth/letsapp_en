@@ -6,7 +6,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 		$scope.addClassesToLeftMenu = function(){
 			$http({
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
-				method: "get",
+				method: "JSONP",
 				params: {
 					action: "list_lesson_menu",
 					project_id: localStorage.getItem("project_id"),
@@ -16,10 +16,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				$scope.milestoneList = response.data;
 			}).
 			error(function(data, status, headers, config) {
-				alert(data);
-				alert(status);
-				alert(headers);
-				alert(config);
+				alert("error");
 			});
 		}
 		if(localStorage.getItem("login"))
