@@ -31,7 +31,8 @@ module.controller('menuController', function($scope, $http, $sce) {
 			$scope.registrationType = 'join';
 			$http({
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
-				method: "json",
+				method: "post",
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				data: {
 					action: "get_proj_api",
 					callback:'JSON_CALLBACK'
