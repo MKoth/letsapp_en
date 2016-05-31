@@ -6,7 +6,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 		$scope.addClassesToLeftMenu = function(){
 			$http({
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
-				method: "jsonp",
+				method: "get",
 				params: {
 					action: "list_lesson_menu",
 					project_id: localStorage.getItem("project_id"),
