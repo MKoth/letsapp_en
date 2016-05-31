@@ -13,8 +13,6 @@ module.controller('menuController', function($scope, $http, $sce) {
 					callback:'JSON_CALLBACK'
 				},
 			}).success(function(response) {
-				alert(localStorage.getItem("project_id"));
-				alert(response);
 				$scope.milestoneList = response;
 			}).
 			error(function(data, status, headers, config) {
