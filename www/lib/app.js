@@ -34,13 +34,13 @@ module.controller('menuController', function($scope, $http, $sce) {
 				method: "post",
 				data: {
 					action: "get_proj_api",
-					callback:'JSON_CALLBACK'
+					//callback:'JSON_CALLBACK'
 				},
 			}).then(function(response) {
 				$scope.allProjTemplates = response.data;
 				menu.setMainPage('select-project.html', {closeMenu: true});
 			}, function(response) {
-				alert(response.data);
+				alert(response.statusData);
 			});
 		}
 		
