@@ -5,7 +5,7 @@
 			</div>
 			<div class="center" style="font-size:12px;">{{milestone_title}}</div>
 		</ons-toolbar>
-		<ons-carousel ng-if="milestonePostmetaMedia" style="height: 650px; width: 100%; text-align:center;" initial-index="0" swipeable overscrollable auto-scroll>
+		<ons-carousel style="height: 650px; width: 100%; text-align:center;" initial-index="0" swipeable overscrollable auto-scroll>
 			<ons-carousel-item ng-repeat="media in milestonePostmetaMedia">
 				<img ng-if="!checkVideo(media)" src="{{media}}" style="width:100%;"></img>
 				<video ng-if="checkVideo(media)" width="320" height="640" controls>
