@@ -15,7 +15,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 			}).success(function(response) {
 				alert(localStorage.getItem("project_id"));
 				alert(response);
-				$scope.milestoneList = response.data;
+				$scope.milestoneList = response;
 			}).
 			error(function(data, status, headers, config) {
 				alert("error in classes");
