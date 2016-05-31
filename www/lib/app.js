@@ -31,10 +31,10 @@ module.controller('menuController', function($scope, $http, $sce) {
 			$scope.registrationType = 'join';
 			$http({
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
-				method: "post",
+				method: "json",
 				data: {
 					action: "get_proj_api",
-					//callback:'JSON_CALLBACK'
+					callback:'JSON_CALLBACK'
 				},
 			}).then(function(response) {
 				$scope.allProjTemplates = response.data;
