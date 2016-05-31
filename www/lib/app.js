@@ -24,6 +24,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 		
 		//function getting classes if someone wants to join class
 		$scope.joinClass = function(){
+			alert("do stuf");
 			//localStorage.setItem("chosen_proj_id", proj_id);
 			$scope.registrationType = 'join';
 			$http({
@@ -34,6 +35,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 					callback:'JSON_CALLBACK'
 				},
 			}).then(function(response) {
+				alert(response);
 				$scope.allProjTemplates = response.data;
 				menu.setMainPage('select-project.html', {closeMenu: true});
 			});
