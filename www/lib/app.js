@@ -38,6 +38,8 @@ module.controller('menuController', function($scope, $http, $sce) {
 			}).then(function(response) {
 				$scope.allProjTemplates = response.data;
 				menu.setMainPage('select-project.html', {closeMenu: true});
+			}, function(response) {
+				alert(response.statusText);
 			});
 		}
 		
