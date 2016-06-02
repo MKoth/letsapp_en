@@ -2,7 +2,8 @@ var module = ons.bootstrap('my-app', ['onsen']);
 module.controller('menuController', function($scope, $http, $sce) {
 	ons.ready(function() {
 		//function to get picture from library
-		$scope.getPicture = function(){
+		$scope.getImgPicture = function(){
+			alert("pic");
 			navigator.camera.getPicture(onSuccess, onFail, {quality:100, destinationType: Camera.DestinationType.DATA_URL, sourceType: navigator.camera.PictureSourceType.PHOTOLOBRARY});
 		}
 		
