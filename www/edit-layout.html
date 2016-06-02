@@ -1,0 +1,23 @@
+	<ons-page>
+		<ons-toolbar>
+		  <div class="left">
+			<ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="fa-bars"></ons-icon></ons-toolbar-button>
+		  </div>
+		  <div class="center">Edit App Layout</div>
+		</ons-toolbar>
+		<div>
+			<section style="padding: 8px; padding-bottom:2px;">
+				<input type="text" class="text-input" ng-model="layout.main_title" placeholder="Change the main page title" style="display:block;width:70%;height:40px;float:left;border-top-right-radius:0px;border-bottom-right-radius: 0px;"><ons-button ng-click="saveText('main_title',layout.main_title)" style="width:30%;float:right;border-top-left-radius:0px;border-bottom-left-radius: 0px;">Save Text</ons-button>
+				<div style="clear:both;"></div>
+			</section>
+			<section style="padding: 8px; padding-bottom:2px; padding-top:0;">
+				<input type="text" class="text-input" ng-model="layout.app_title" placeholder="Change the title of your app" style="display:block;width:70%;height:40px;float:left;border-top-right-radius:0px;border-bottom-right-radius: 0px;"><ons-button ng-click="saveText('app_title',layout.app_title)" style="width:30%;float:right;border-top-left-radius:0px;border-bottom-left-radius: 0px;">Save Text</ons-button>
+				<div style="clear:both;"></div>
+			</section>
+			<section style="padding: 8px; padding-bottom:2px; padding-top:0;">
+				<ons-button modifier="large" ng-click="getPicture()">Change photo on main page</ons-button>
+				<div style="clear:both;"></div>
+			</section>
+			<img id="img" src="{img_url}"></img>
+		</div>
+	</ons-page>

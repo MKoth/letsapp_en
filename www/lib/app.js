@@ -1,6 +1,53 @@
 var module = ons.bootstrap('my-app', ['onsen']);
 module.controller('menuController', function($scope, $http, $sce) {
 	ons.ready(function() {
+		//function to get picture from library
+		$scope.getPicture = function(){
+			navigator.camera.getPicture(onSuccess, onFail, {quality:100, destinationType: Camera.DestinationType.DATA_URL, sourceType: navigator.camera.PictureSourceType.PHOTOLOBRARY});
+		}
+		
+		function onSuccess(imageData){
+			var image = document.getElementById("img");
+			image.src = "data:image/jpeg;base64"+imageData;
+		}
+		
+		function onFail(message){
+			alert(message);
+		}
+		
+		$scope.layout = {main_title:localStorage.getItem("project_id"),app_title:""};
+		//function replacing text in app
+		$scope.saveText = function(type, content){
+			if(type=="main_title")
+			{
+				$scope.tag_name = "h2";
+				$scope.file_path = "www/welcome.html";
+				$scope.new_title = $scope.layout.main_title;
+			}
+			else if(type=="app_title")
+			{
+				$scope.tag_name = "name";
+				$scope.file_path = "config.xml";
+				$scope.new_title = $scope.layout.app_title;
+			}
+			$http({
+				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
+				method: "POST",
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				params: {
+					action: "change_app_heading",
+				},
+				data: {
+					tag_name: $scope.tag_name,
+					file_path: $scope.file_path,
+					new_title: $scope.new_title,
+					proj_id: localStorage.getItem("project_id")
+				},
+			}).then(function(response) {
+				//alert(response.data);
+				alert("Changes of app saved");
+			});
+		}
 		
 		//adding the milestone to left menu
 		$scope.addClassesToLeftMenu = function(){
@@ -13,7 +60,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 					callback:'JSON_CALLBACK'
 				},
 			}).then(function(response) {
-				$scope.milestoneList = response;
+				$scope.milestoneList = response.data;
 			});
 		}
 		if(localStorage.getItem("login"))
