@@ -1,7 +1,3 @@
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    alert(navigator.camera);
-}
 var module = ons.bootstrap('my-app', ['onsen']);
 module.controller('menuController', function($scope, $http, $sce) {
 	ons.ready(function() {

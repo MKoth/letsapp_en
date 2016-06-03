@@ -11,11 +11,15 @@
 	<plugin name="org.apache.cordova.geolocation" />
 	<plugin name="org.apache.cordova.inappbrowser" />
 	<plugin name="cordova-plugin-whitelist" />
-	<plugin name="org.apache.cordova.camera" spec="0.3.6" source="pgb" />
+	<plugin name="org.apache.cordova.camera" />
 	<content src="index.html" />
 	<icon src="icon.png"/>
 	<splash src="splash.png" />
 	
+	<feature name="Camera">
+		<param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+		<param name="ios-package" value="CDVCamera" />
+	</feature>
 	<preference name="KeyboardDisplayRequiresUserAction" value="true" />
 	<preference name="MediaPlaybackRequiresUserAction" value="false" />
 	<preference name="AllowInlineMediaPlayback" value="true" />
