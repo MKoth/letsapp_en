@@ -1,19 +1,25 @@
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    alert(navigator.camera);
+}
 var module = ons.bootstrap('my-app', ['onsen']);
 module.controller('menuController', function($scope, $http, $sce) {
 	ons.ready(function() {
 		//function to get picture from library
 		$scope.getImgPicture = function(){
-			alert("pic");
-			navigator.camera.getPicture(onSuccess, onFail);
+			navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+			destinationType: Camera.DestinationType.FILE_URI });
 		}
 		
-		function onSuccess(imageData){
-			var image = document.getElementById("img");
-			image.src = "data:image/jpeg;base64"+imageData;
+		
+    
+		function onSuccess(imageURI) {
+			var image = document.getElementById('img');
+			image.src = imageURI;
 		}
 		
-		function onFail(message){
-			alert(message);
+		function onFail(message) {
+			alert('Failed because: ' + message);
 		}
 		
 		$scope.layout = {main_title:localStorage.getItem("project_id"),app_title:""};

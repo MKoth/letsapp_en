@@ -11,7 +11,7 @@
 	<plugin name="org.apache.cordova.geolocation" />
 	<plugin name="org.apache.cordova.inappbrowser" />
 	<plugin name="cordova-plugin-whitelist" />
-	<plugin name="cordova-plugin-camera" />
+	<plugin name="org.apache.cordova.camera" spec="0.3.6" source="pgb" />
 	<content src="index.html" />
 	<icon src="icon.png"/>
 	<splash src="splash.png" />
