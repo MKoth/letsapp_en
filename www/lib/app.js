@@ -1,21 +1,21 @@
 var module = ons.bootstrap('my-app', ['onsen']);
 module.controller('menuController', function($scope, $http, $sce) {
 	ons.ready(function() {
+		
 		//function to get picture from library
 		$scope.getImgPicture = function(){
-			navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+			navigator.camera.getPicture($scope.onSuccess, $scope.onFail, { quality: 50,
 			destinationType: Camera.DestinationType.DATA_URI,
 			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY	});
 		}
-		
-		
     
-		function onSuccess(imageURI) {
+		$scope.onSuccess=function(imageURI) {
+			alert("msg");
 			var image = document.getElementById('img');
 			image.src = imageURI;
 		}
 		
-		function onFail(message) {
+		$scope.onFail=function(message) {
 			alert('Failed because: ' + message);
 		}
 		
