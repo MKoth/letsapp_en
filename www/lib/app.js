@@ -4,7 +4,8 @@ module.controller('menuController', function($scope, $http, $sce) {
 		//function to get picture from library
 		$scope.getImgPicture = function(){
 			navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-			destinationType: Camera.DestinationType.DATA_URI });
+			destinationType: Camera.DestinationType.DATA_URI,
+			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY	});
 		}
 		
 		
