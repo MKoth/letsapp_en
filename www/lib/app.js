@@ -3,16 +3,62 @@ module.controller('menuController', function($scope, $http, $sce) {
 	ons.ready(function() {
 		
 		//function to get picture from library
-		$scope.getImgPicture = function(){
-			navigator.camera.getPicture($scope.onSuccess, $scope.onFail, { quality: 50,
-			destinationType: Camera.DestinationType.DATA_URI,
+		
+	/*navigator.camera.getPicture(onSuccess, onFail, { 
+		quality: 100,
+		destinationType: Camera.DestinationType.DATA_URL,
+		//sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+	});*/
+	
+		
+		
+		$scope.getPicFile = function(){
+			//alert();
+			navigator.camera.getPicture($scope.getPictureSuccess, $scope.onFail, { quality: 100,
+			destinationType: Camera.DestinationType.FILE_URI,
 			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY	});
 		}
+		
+		$scope.getPicCam = function(){
+			//alert();
+			navigator.camera.getPicture($scope.getPictureSuccess, $scope.onFail, { quality: 30,
+			destinationType: Camera.DestinationType.FILE_URI });
+		}
     
-		$scope.onSuccess=function(imageURI) {
-			alert("msg");
-			var image = document.getElementById('img');
-			image.src = imageURI;
+		$scope.clearCache = function() {
+			navigator.camera.cleanup();
+		}
+	
+		$scope.getPictureSuccess=function(fileURI) {
+			//document.getElementById('img').src = fileURI;
+			var win = function (r) {
+				$scope.clearCache();
+				retries = 0;
+				alert('Done!');
+				alert(r.response.toString());
+			}
+		 
+			var fail = function (error) {
+				if (retries == 0) {
+					retries ++
+					setTimeout(function() {
+						getPictureSuccess(fileURI)
+					}, 1000)
+				} else {
+					retries = 0;
+					$scope.clearCache();
+					alert('Ups. Something wrong happens!');
+				}
+			}
+		 
+			var options = new FileUploadOptions();
+			options.fileKey = "file";
+			options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+			options.mimeType = "image/jpeg";
+			options.params = {action:"change_app_image", 'proj_id':localStorage.getItem("project_id")}; // if we need to send parameters to the server request
+			var ft = new FileTransfer();
+			ft.upload(fileURI, encodeURI("http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php"), win, fail, options);
+			ft.upload(fileURI, encodeURI("http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php"), win, fail, options);
 		}
 		
 		$scope.onFail=function(message) {
@@ -393,3 +439,14 @@ module.controller('PageController', function($scope) {
          // Init code here
 	});
 });	
+
+function onSuccess(imageURI) {
+    // here we can upload imageData to the server
+	//alert(imageURI);
+	var image = document.getElementById("myImg");
+	image.src = "data:image/jpeg;base64,"+imageURI;
+}
+ 
+function onFail(message) {
+    alert('Failed because: ' + message);
+}

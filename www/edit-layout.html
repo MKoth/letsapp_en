@@ -15,9 +15,11 @@
 				<div style="clear:both;"></div>
 			</section>
 			<section style="padding: 8px; padding-bottom:2px; padding-top:0;">
-				<ons-button modifier="large" ng-click="getImgPicture()">Change photo on main page</ons-button>
+				<h2>Change photo on main page</h2>
+				<ons-button modifier="large" ng-click="getPicFile()" style="width:50%;float:left;">Get saved photo</ons-button>
+				<ons-button modifier="large" ng-click="getPicCam()" style="width:50%;float:right;">Get photo from camera</ons-button>
 				<div style="clear:both;"></div>
 			</section>
-			<img id="img" src="{img_url}"></img>
+			<!--<img id="img" src="{img_url}"></img>-->
 		</div>
 	</ons-page>
