@@ -28,14 +28,16 @@ module.controller('menuController', function($scope, $http, $sce) {
 		$scope.clearCache = function() {
 			navigator.camera.cleanup();
 		}
-	
 		$scope.getPictureSuccess=function(fileURI) {
+			jQuery("#loader").fadeIn();
 			//document.getElementById('img').src = fileURI;
 			var win = function (r) {
 				$scope.clearCache();
 				retries = 0;
-				alert('Done!');
-				alert(r.response.toString());
+				//alert('Done!');
+				//alert(r.response.toString());
+				jQuery("#loader").fadeOut();
+				alert('Photo saved!');
 			}
 		 
 			var fail = function (error) {
@@ -48,6 +50,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 					retries = 0;
 					$scope.clearCache();
 					alert('Ups. Something wrong happens!');
+					jQuery("#loader").fadeIn();
 				}
 			}
 		 
@@ -68,6 +71,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 		$scope.layout = {main_title:localStorage.getItem("project_id"),app_title:""};
 		//function replacing text in app
 		$scope.saveText = function(type, content){
+			jQuery("#loader").fadeIn();
 			if(type=="main_title")
 			{
 				$scope.tag_name = "h2";
@@ -94,6 +98,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 					proj_id: localStorage.getItem("project_id")
 				},
 			}).then(function(response) {
+				jQuery("#loader").fadeOut();
 				//alert(response.data);
 				alert("Changes of app saved");
 			});
@@ -101,6 +106,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 		
 		//adding the milestone to left menu
 		$scope.addClassesToLeftMenu = function(){
+			jQuery("#loader").fadeIn();
 			$http({
 				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
 				method: "get",
@@ -110,6 +116,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 					callback:'JSON_CALLBACK'
 				},
 			}).then(function(response) {
+				jQuery("#loader").fadeOut();
 				$scope.milestoneList = response.data;
 			});
 		}
