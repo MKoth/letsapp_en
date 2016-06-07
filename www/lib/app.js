@@ -1,4 +1,11 @@
 var module = ons.bootstrap('my-app', ['onsen']);
+
+module.filter('trustUrl', function ($sce) {
+    return function(url) {
+      return $sce.trustAsResourceUrl(url);
+    };
+});
+
 module.controller('menuController', function($scope, $http, $sce) {
 	ons.ready(function() {
 		
@@ -9,8 +16,54 @@ module.controller('menuController', function($scope, $http, $sce) {
 		destinationType: Camera.DestinationType.DATA_URL,
 		//sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 	});*/
-	
+		$scope.appLinkDownload = {link:"#", text:"App is building, please wait..."};
+		$scope.getAppLink = function(){
+			$scope.appLinkDownload.link = "#";
+			$scope.appLinkDownload.text = "App is building, please wait...";
+			$http({
+				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
+				method: "GET",
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				params: {
+					action: "get_app_link",
+					proj_id: localStorage.getItem("project_id")
+				}
+			}).then(function(response) {
+				//alert(response.data.location);
+				if(response.data.location)
+				{
+					//$scope.appLinkDownload.link = trustSrc(response.data.location);
+					//trustSrc(response.data.location);
+					$scope.appLinkDownload.link = response.data.location;
+					$scope.appLinkDownload.text = "Download your app here";
+				}
+				else
+				{
+					setTimeout($scope.getAppLink, 5000);
+				}
+			});
+		}
 		
+		$scope.getAppLink();
+	
+		$scope.startBuildingApp = function(){
+			jQuery("#loader").fadeIn();
+			$http({
+				url: "http://www.letsgetstartup.com/app-cloud/wp-admin/admin-ajax.php", 
+				method: "POST",
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				params: {
+					action: "rebuild_app",
+				},
+				data: {
+					proj_id: localStorage.getItem("project_id")
+				},
+			}).then(function(response) {
+				jQuery("#loader").fadeOut();
+				//alert(response.data);
+				$scope.getAppLink();
+			});
+		}
 		
 		$scope.getPicFile = function(){
 			//alert();
@@ -65,10 +118,10 @@ module.controller('menuController', function($scope, $http, $sce) {
 		}
 		
 		$scope.onFail=function(message) {
-			alert('Failed because: ' + message);
+			//alert('Failed because: ' + message);
 		}
 		
-		$scope.layout = {main_title:localStorage.getItem("project_id"),app_title:""};
+		$scope.layout = {main_title:"",app_title:""};
 		//function replacing text in app
 		$scope.saveText = function(type, content){
 			jQuery("#loader").fadeIn();
