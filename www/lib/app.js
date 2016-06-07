@@ -326,7 +326,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 		}
 		else
 		{
-			menu.setMainPage('start-page.html', {closeMenu: true});
+			menu.setMainPage('login.html', {closeMenu: true});
 			$scope.swappable = false;
 		}
 		
@@ -347,7 +347,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				}
 				else
 				{
-					menu.setMainPage('start-page.html', {closeMenu: true});
+					menu.setMainPage('login.html', {closeMenu: true});
 					$scope.swappable = false;
 				}
 			});
@@ -458,7 +458,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 		$scope.menuLogoutClickFunc = function(){
 			$scope.swappable = false;
 			localStorage.removeItem("login","Michael");
-			menu.setMainPage('start-page.html', {closeMenu: true});
+			menu.setMainPage('login.html', {closeMenu: true});
 		}
 		
 		//listing the posts
