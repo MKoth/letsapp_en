@@ -2,7 +2,7 @@
 <section style="padding: 8px">
 	<input type="text" class="text-input" ng-model="addNewItemName" placeholder="Items name" style="display: block; width: 100%">
 </section>
-<div ng-repeat="addField in addNewItemFields">
+<div id="add-item-area" ng-repeat="addField in addNewItemFields">
 	<section style="padding: 8px" ng-if="checkFieldType(addField['type'],'google_map')">
 		<input type="text" class="text-input" ng-model="addField['value']['address']" placeholder="Address" style="display: block; width: 100%">
 		<input type="text" class="text-input" ng-model="addField['value']['lng']" placeholder="Longitude" style="display: block; width: 50%; float:right;">
