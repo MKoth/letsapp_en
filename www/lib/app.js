@@ -187,7 +187,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 			$scope.addClassesToLeftMenu();
 		
 		//declaring variable for task commenting form
-		$scope.newTaskCommentContent = "";
+		$scope.newTaskComment = {content:""};
 		
 		//function getting classes if someone wants to join class
 		$scope.joinClass = function(){
@@ -236,11 +236,13 @@ module.controller('menuController', function($scope, $http, $sce) {
 			$scope.milestone_content=$scope.milestoneList[id].content;
 			$scope.milestone_content=$sce.trustAsHtml($scope.milestone_content);
 			if($scope.milestoneList[id].type=="lesson")
-				menu.setMainPage('milestone.html', {closeMenu: true});
+			{
+				$scope.getMilestoneMeta($scope.milestoneList[id].id);
+			}
 			if($scope.milestoneList[id].type=="task")
-				menu.setMainPage('task.html', {closeMenu: true});
-			$scope.getTaskComment($scope.currentCommentsTaskId);
-			$scope.getMilestoneMeta($scope.milestoneList[id].id);
+			{
+				$scope.getTaskComment($scope.currentCommentsTaskId);
+			}
 		}
 		
 		//function which fires if task menu item from left menu clicked
@@ -255,6 +257,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				},
 			}).then(function(response) {
 				$scope.currentTaskComments = response.data;
+				menu.setMainPage('task.html', {closeMenu: true});
 			});
 		}
 		
@@ -270,6 +273,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				},
 			}).then(function(response) {
 				$scope.milestonePostmetaMedia = response.data;
+				menu.setMainPage('milestone.html', {closeMenu: true});
 			});
 		}
 		
@@ -313,7 +317,7 @@ module.controller('menuController', function($scope, $http, $sce) {
 				},
 			}).then(function(response) {
 				$scope.getTaskComment($scope.currentCommentsTaskId);
-				$scope.newTaskCommentContent = "";
+				$scope.newTaskComment.content = "";
 			});
 		}
 		
