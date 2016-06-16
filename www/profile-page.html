@@ -1,0 +1,17 @@
+<ons-page>
+		<ons-toolbar>
+		  <div class="left">
+			<ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="fa-bars"></ons-icon></ons-toolbar-button>
+		  </div>
+		  <div class="center">Edit user profile</div>
+		</ons-toolbar>
+		<div>
+			<section style="padding: 8px; padding-bottom:2px; padding-top:0;margin-bottom:40px;">
+				<h2>Change photo of User profile</h2>
+				<img src="{{userdata.profile_image}}" style="width:100%;"></img>
+				<ons-button modifier="large" ng-click="getUserFile()" style="width:49%;float:left;margin-right:2%;">Get saved photo</ons-button>
+				<ons-button modifier="large" ng-click="getUserCam()" style="width:49%;float:right;">Get photo from camera</ons-button>
+				<div style="clear:both;"></div>
+			</section>
+		</div>
+	</ons-page>

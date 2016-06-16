@@ -26,6 +26,16 @@
 		<div id="loader" style="display:none;">
 			<div></div>
 		</div>
+		<ons-template id="add-app-dialog.html">
+				<ons-dialog var="dialog" cancelable>
+					<section style="padding: 8px">
+						<input type="text" class="text-input" placeholder="Enter the name of your app" style="display: block; width: 100%">
+					</section>
+					<section style="padding: 0 8px 8px">
+						<ons-button modifier="large" ng-click="createNewApp();">Create app</ons-button>
+					</section>
+				</ons-dialog>
+			 </ons-template>
 	</div>
 	<!--<script src="https://maps.googleapis.com/maps/api/js?callback=initMaps" ></script>-->
 	
